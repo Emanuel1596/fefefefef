@@ -1350,48 +1350,5 @@ Esta entidad solo se usaría si EduTech guardará mensajes enviados desde la pan
 
 Si el formulario de contacto solo envía un correo y no guarda mensajes en la base de datos, esta entidad puede omitirse.
 
----
-
-# Resumen de entidades finales
-
-## Entidades principales
-
-- Usuario
-- Curso
-- Modulo
-- Leccion
-- Recurso
-- Leccion_Recurso
-- Orden
-- Datos_Compra
-- Pago
-- Webhook_Pago
-- Inscripcion
-- Progreso_Leccion
-- Examen
-- Pregunta
-- Opcion_Respuesta
-- Intento_Examen
-- Pregunta_Intento
-- Respuesta_Alumno
-- Certificado
-
-## Entidades de catálogo
-
-- Rol
-- Nivel_Curso
-- Estado_Curso
-- Tipo_Video
-- Tipo_Recurso
-- Moneda
-- Estado_Orden
-- Estado_Federativo
-- Ciudad
-- Proveedor_Pago
-- Estado_Pago
-- Estado_Webhook
-- Estado_Inscripcion
-- Estado_Examen
-- Estado_Intento
 
 
