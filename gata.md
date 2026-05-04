@@ -2,14 +2,6 @@
 
 ## Proyecto: EduTech - Plataforma Web de Cursos
 
-## Objetivo
-
-Este documento presenta la identificación de entidades y atributos principales para la base de datos del sistema EduTech.
-
-EduTech permite que los alumnos se registren, compren cursos, accedan a módulos y lecciones, registren su progreso, presenten un examen final y obtengan certificados. También contempla usuarios con rol de instructor y administrador.
-
----
-
 ## Criterios usados para identificar entidades
 
 Para identificar las entidades se usaron estos criterios:
