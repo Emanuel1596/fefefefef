@@ -2,13 +2,13 @@
 
 ## Decisión general
 
-Para el proyecto completo se recomienda planear **25 pantallas HTML principales**. Para el primer sprint se recomienda diseñar **14 pantallas HTML principales**.
+Para el proyecto completo se recomienda planear 25 pantallas HTML principales. Para el primer sprint se recomienda diseñar 14 pantallas HTML principales.
 
 La razón es que el primer sprint debe demostrar el flujo principal sin intentar construir todo el sistema final. Algunas funciones pueden quedar como secciones internas, pestañas o formularios dentro de una pantalla principal.
 
 ## Totales
 
-|Alcance|Total recomendado|Motivo|
+|Alcance|Recomendacion|Motivo|
 |-|-:|-|
 |Proyecto completo|25 HTML|Cubre zona pública, alumno, instructor, administrador, compra, examen y solicitudes.|
 |Primer sprint|14 HTML|Permite entregar una versión defendible antes del 7 de mayo sin crear pantallas innecesarias.|
