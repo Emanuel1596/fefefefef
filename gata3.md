@@ -1,3 +1,4 @@
+
 # Identificación de entidades y atributos de base de datos
 
 ## Proyecto: EduTech - Plataforma Web de Cursos
@@ -9,11 +10,11 @@ Para identificar las entidades se usaron estos criterios:
 1. Una entidad representa información importante que el sistema necesita guardar.
 2. Los atributos deben ser claros y atómicos.
 3. Los datos repetidos y controlados se manejan mediante catálogos.
-4. Si un dato solo tiene dos estados, como activo/inactivo, se puede manejar con `BOOLEAN`.
+4. Si un dato solo tiene dos estados, como activo/inactivo, se puede manejar con BOOLEAN.
 5. Si un dato tiene varios estados de negocio, como pendiente, aprobado, rechazado o cancelado, se maneja con catálogo.
 6. Los botones, pantallas, secciones, menús o dashboards no son entidades de base de datos.
 7. Los datos calculables, como el porcentaje de avance, no se guardan como atributo fijo si pueden obtenerse mediante consulta.
-8. Las contraseñas no se guardan en texto plano; se guarda un `password_hash`.
+8. Las contraseñas no se guardan en texto plano; se guarda un password_hash.
 9. Los estados se guardan en la base de datos, pero normalmente los cambios de estado los realiza el backend.
 10. Los identificadores externos de pago no los genera EduTech, sino la pasarela de pago.
 
@@ -37,13 +38,13 @@ Los tipos de dato se plantean pensando en PostgreSQL y en el tamaño esperado de
 | Código de moneda | CHAR(3) |
 | Contenido de webhook | JSONB |
 
-Se usa `INTEGER` para los identificadores porque es suficiente para el tamaño esperado del proyecto. Para esta etapa no es necesario usar `BIGINT`.
+Se usa INTEGER para los identificadores porque es suficiente para el tamaño esperado del proyecto. Para esta etapa no es necesario usar BIGINT.
 
 ---
 
 ## ¿Por qué TIMESTAMP y no DATE?
 
-Se usa `TIMESTAMP` cuando importa guardar fecha y hora.
+Se usa TIMESTAMP cuando importa guardar fecha y hora.
 
 En EduTech casi todos los eventos necesitan hora exacta:
 
@@ -62,7 +63,7 @@ Ejemplo:
 |---|---|
 | fecha_pago | 2026-05-03 09:05:00 |
 
-No sería suficiente guardar solo la fecha `2026-05-03`, porque se perdería la hora exacta del evento.
+No sería suficiente guardar solo la fecha 2026-05-03, porque se perdería la hora exacta del evento.
 
 ---
 
@@ -70,7 +71,7 @@ No sería suficiente guardar solo la fecha `2026-05-03`, porque se perdería la 
 
 Un catálogo es una tabla que guarda valores controlados y definidos previamente.
 
-Por ejemplo, en lugar de escribir muchas veces el estado de un pago como texto, se crea una entidad `Estado_Pago` y en la tabla `Pago` solo se guarda el identificador correspondiente.
+Por ejemplo, en lugar de escribir muchas veces el estado de un pago como texto, se crea una entidad Estado_Pago y en la tabla Pago solo se guarda el identificador correspondiente.
 
 | id_estado_pago | nombre_estado_pago |
 |---:|---|
@@ -83,24 +84,24 @@ Esto evita errores de escritura y mantiene consistencia en la base de datos.
 
 Regla general:
 
-- Si solo hay dos opciones, puede usarse `BOOLEAN`.
+- Si solo hay dos opciones, puede usarse BOOLEAN.
 - Si hay varios estados con significado dentro del proceso, conviene usar catálogo.
 
 ---
 
-## Nota sobre el uso de `id_usuario`
+## Nota sobre el uso de id_usuario
 
-En el modelo se utiliza una sola entidad llamada `Usuario` para representar a alumnos, instructores y administradores.
+En el modelo se utiliza una sola entidad llamada Usuario para representar a alumnos, instructores y administradores.
 
-La diferencia entre ellos se controla mediante la entidad `Rol`.
+La diferencia entre ellos se controla mediante la entidad Rol.
 
-Por esta razón, no se crean entidades separadas llamadas `Alumno`, `Instructor` o `Administrador`, ya que los tres comparten datos principales como nombre, apellidos, correo, contraseña, teléfono y fecha de registro.
+Por esta razón, no se crean entidades separadas llamadas Alumno, Instructor o Administrador, ya que los tres comparten datos principales como nombre, apellidos, correo, contraseña, teléfono y fecha de registro.
 
-En las tablas relacionadas se utiliza el atributo `id_usuario` como llave foránea hacia `Usuario.id_usuario`.
+En las tablas relacionadas se utiliza el atributo id_usuario como llave foránea hacia Usuario.id_usuario.
 
-El significado de `id_usuario` depende de la tabla donde aparece.
+El significado de id_usuario depende de la tabla donde aparece.
 
-| Tabla | Significado de `id_usuario` |
+| Tabla | Significado de id_usuario |
 |---|---|
 | Curso | Usuario instructor que creó el curso |
 | Orden | Usuario alumno que realizó la compra |
@@ -130,7 +131,7 @@ El significado de `id_usuario` depende de la tabla donde aparece.
 |---:|---:|---|
 | 10 | 2 | Java desde cero |
 
-En este caso, `Curso.id_usuario = 2` significa que el usuario 2, Luisa, es la instructora que creó el curso.
+En este caso, Curso.id_usuario = 2 significa que el usuario 2, Luisa, es la instructora que creó el curso.
 
 #### Orden
 
@@ -138,7 +139,7 @@ En este caso, `Curso.id_usuario = 2` significa que el usuario 2, Luisa, es la in
 |---:|---:|---:|---:|
 | 50 | 1 | 10 | 299.00 |
 
-En este caso, `Orden.id_usuario = 1` significa que el usuario 1, Emanuel, fue el alumno que realizó la compra.
+En este caso, Orden.id_usuario = 1 significa que el usuario 1, Emanuel, fue el alumno que realizó la compra.
 
 #### Inscripcion
 
@@ -146,17 +147,17 @@ En este caso, `Orden.id_usuario = 1` significa que el usuario 1, Emanuel, fue el
 |---:|---:|---:|
 | 80 | 1 | 10 |
 
-En este caso, `Inscripcion.id_usuario = 1` significa que el usuario 1, Emanuel, tiene acceso al curso 10.
+En este caso, Inscripcion.id_usuario = 1 significa que el usuario 1, Emanuel, tiene acceso al curso 10.
 
 ### Reglas de negocio
 
-Aunque el atributo se llame `id_usuario`, el sistema debe validar el rol correspondiente:
+Aunque el atributo se llame id_usuario, el sistema debe validar el rol correspondiente:
 
 | Regla | Explicación |
 |---|---|
-| En `Curso`, `id_usuario` debe pertenecer a un usuario con rol Instructor | Solo un instructor debe crear cursos |
-| En `Orden`, `id_usuario` debe pertenecer a un usuario con rol Alumno | Solo un alumno debe comprar cursos |
-| En `Inscripcion`, `id_usuario` debe pertenecer a un usuario con rol Alumno | Solo un alumno debe inscribirse a cursos |
+| En Curso, id_usuario debe pertenecer a un usuario con rol Instructor | Solo un instructor debe crear cursos |
+| En Orden, id_usuario debe pertenecer a un usuario con rol Alumno | Solo un alumno debe comprar cursos |
+| En Inscripcion, id_usuario debe pertenecer a un usuario con rol Alumno | Solo un alumno debe inscribirse a cursos |
 
 Estas reglas normalmente las valida el backend antes de guardar o modificar información.
 
@@ -166,31 +167,31 @@ Estas reglas normalmente las valida el backend antes de guardar o modificar info
 
 La base de datos almacena los estados, pero normalmente el backend es quien decide cuándo cambiarlos.
 
-Por ejemplo, cuando un instructor crea un curso, el backend puede asignar automáticamente el estado `borrador`. Si después el instructor lo envía a revisión, el backend cambia el estado a `pendiente_revision`. Si el administrador lo aprueba, el backend cambia el estado a `publicado`.
+Por ejemplo, cuando un instructor crea un curso, el backend puede asignar automáticamente el estado borrador. Si después el instructor lo envía a revisión, el backend cambia el estado a pendiente_revision. Si el administrador lo aprueba, el backend cambia el estado a publicado.
 
 Lo mismo ocurre con las órdenes, pagos, inscripciones e intentos de examen. La base de datos guarda el resultado, pero las reglas del proceso se aplican desde el backend.
 
 | Acción | Cambio realizado por el backend |
 |---|---|
-| Instructor crea curso | Curso queda en estado `borrador` |
-| Admin aprueba curso | Curso cambia a `publicado` |
-| Alumno inicia compra | Orden queda `pendiente` |
-| PayPal confirma pago | Pago cambia a `aprobado` y orden a `completada` |
-| Pago aprobado | Se crea una inscripción `activa` |
-| Alumno termina el curso | Inscripción cambia a `completada` |
-| Alumno inicia examen | Intento queda `en_progreso` |
-| Alumno envía examen | Intento cambia a `finalizado` |
-| Sistema detecta regla inválida | Intento cambia a `invalidado` |
+| Instructor crea curso | Curso queda en estado borrador |
+| Admin aprueba curso | Curso cambia a publicado |
+| Alumno inicia compra | Orden queda pendiente |
+| PayPal confirma pago | Pago cambia a aprobado y orden a completada |
+| Pago aprobado | Se crea una inscripción activa |
+| Alumno termina el curso | Inscripción cambia a completada |
+| Alumno inicia examen | Intento queda en_progreso |
+| Alumno envía examen | Intento cambia a finalizado |
+| Sistema detecta regla inválida | Intento cambia a invalidado |
 
 ---
 
 ## Nota sobre pagos externos y webhooks
 
-El atributo `id_pago_externo` no lo genera EduTech. Lo genera la pasarela de pago, como PayPal o Stripe, cuando se crea o confirma una transacción.
+El atributo id_pago_externo no lo genera EduTech. Lo genera la pasarela de pago, como PayPal o Stripe, cuando se crea o confirma una transacción.
 
 EduTech guarda ese identificador para relacionar su pago interno con el pago registrado por la pasarela externa.
 
-El atributo `contenido_evento` guarda la información completa enviada por la pasarela mediante webhook. Normalmente se almacena en formato `JSONB`, porque la respuesta viene como datos estructurados.
+El atributo contenido_evento guarda la información completa enviada por la pasarela mediante webhook. Normalmente se almacena en formato JSONB, porque la respuesta viene como datos estructurados.
 
 Ejemplo de contenido recibido:
 
@@ -241,7 +242,7 @@ Representa a las personas que utilizan el sistema.
 **Justificación:**  
 Se crea porque el sistema necesita almacenar los datos de alumnos, instructores y administradores. Esta entidad permite registrar usuarios, iniciar sesión y controlar su rol dentro del sistema.
 
-Se usa `esta_activo` como `BOOLEAN` en lugar de crear una tabla `Estado_Usuario`, porque para este proyecto el usuario solo necesita estar activo o inactivo.
+Se usa esta_activo como BOOLEAN en lugar de crear una tabla Estado_Usuario, porque para este proyecto el usuario solo necesita estar activo o inactivo.
 
 ### Atributos
 
@@ -297,7 +298,7 @@ Se crea para normalizar los niveles de dificultad. Es mejor usar catálogo porqu
 Representa el estado de publicación de un curso.
 
 **Justificación:**  
-Se crea como catálogo porque el curso puede tener más de dos estados. No basta con un `BOOLEAN`, ya que no solo existe publicado/no publicado.
+Se crea como catálogo porque el curso puede tener más de dos estados. No basta con un BOOLEAN, ya que no solo existe publicado/no publicado.
 
 ### Estados propuestos
 
@@ -333,9 +334,9 @@ Representa los cursos creados dentro de la plataforma.
 **Justificación:**  
 Se crea porque EduTech necesita almacenar la información de cada curso: usuario instructor, nivel, estado, título, descripción, imagen y precio.
 
-No se usa `resumen` porque no está como requerimiento obligatorio. La descripción completa puede recortarse visualmente en el frontend cuando se muestre en el catálogo.
+No se usa resumen porque no está como requerimiento obligatorio. La descripción completa puede recortarse visualmente en el frontend cuando se muestre en el catálogo.
 
-Cuando se crea un curso, el backend puede asignarle automáticamente el estado `borrador`.
+Cuando se crea un curso, el backend puede asignarle automáticamente el estado borrador.
 
 ### Atributos
 
@@ -409,11 +410,11 @@ Se crea porque el reproductor de EduTech debe poder manejar diferentes formas de
 | Tipo de video | YouTube |
 | URL o ruta del video | https://youtube.com/watch?v=abc123 |
 
-Si el instructor selecciona `youtube`, el sistema sabe que debe mostrar el video como contenido embebido de YouTube.
+Si el instructor selecciona youtube, el sistema sabe que debe mostrar el video como contenido embebido de YouTube.
 
-Si selecciona `vimeo`, el sistema debe usar el reproductor de Vimeo.
+Si selecciona vimeo, el sistema debe usar el reproductor de Vimeo.
 
-Si selecciona `local`, el sistema debe reproducir un archivo guardado dentro del servidor o almacenamiento del sistema.
+Si selecciona local, el sistema debe reproducir un archivo guardado dentro del servidor o almacenamiento del sistema.
 
 ### Atributos
 
@@ -439,7 +440,7 @@ Representa una lección perteneciente a un módulo.
 **Justificación:**  
 Se crea porque cada módulo contiene lecciones. La lección almacena el contenido principal que consume el alumno: título, texto descriptivo, video y orden.
 
-Se usa `esta_activa` como `BOOLEAN` en lugar de crear `Estado_Leccion`, porque para este proyecto basta con saber si la lección está disponible o no.
+Se usa esta_activa como BOOLEAN en lugar de crear Estado_Leccion, porque para este proyecto basta con saber si la lección está disponible o no.
 
 ### Atributos
 
@@ -487,7 +488,7 @@ Se crea porque los recursos no siempre se muestran igual. Un PDF puede descargar
 | Proyecto base | archivo | Descargar archivo |
 | Código fuente | repositorio | Ver repositorio |
 
-Sin `Tipo_Recurso`, el sistema solo tendría una URL y no sabría claramente cómo presentar cada material.
+Sin Tipo_Recurso, el sistema solo tendría una URL y no sabría claramente cómo presentar cada material.
 
 ### Atributos
 
@@ -512,9 +513,9 @@ Sin `Tipo_Recurso`, el sistema solo tendría una URL y no sabría claramente có
 Representa materiales adicionales que pueden asociarse a una o varias lecciones.
 
 **Justificación:**  
-Se crea para almacenar materiales adicionales como PDFs, enlaces, archivos o repositorios. Se separa de `Leccion` porque una lección puede tener varios recursos y un mismo recurso puede reutilizarse en más de una lección.
+Se crea para almacenar materiales adicionales como PDFs, enlaces, archivos o repositorios. Se separa de Leccion porque una lección puede tener varios recursos y un mismo recurso puede reutilizarse en más de una lección.
 
-Se elimina `id_creador` porque no está explícitamente en los requerimientos y puede deducirse desde el curso/instructor si fuera necesario.
+Se elimina id_creador porque no está explícitamente en los requerimientos y puede deducirse desde el curso/instructor si fuera necesario.
 
 ### Atributos
 
@@ -543,7 +544,7 @@ Representa la relación entre lecciones y recursos.
 **Justificación:**  
 Se crea como entidad intermedia porque una lección puede tener varios recursos y un mismo recurso puede aparecer en varias lecciones.
 
-El atributo `numero_orden` no ordena las lecciones ni el video principal. Solo indica el orden en que se muestran los recursos adicionales dentro de una misma lección.
+El atributo numero_orden no ordena las lecciones ni el video principal. Solo indica el orden en que se muestran los recursos adicionales dentro de una misma lección.
 
 Ejemplo:
 
@@ -559,12 +560,12 @@ Interpretación:
 - En la lección 1, el recurso 2 aparece segundo.
 - En la lección 2, el recurso 1 también puede aparecer primero porque es otra lección.
 
-Para evitar errores, no debe repetirse el mismo `numero_orden` dentro de la misma lección.
+Para evitar errores, no debe repetirse el mismo numero_orden dentro de la misma lección.
 
 | Regla | Explicación |
 |---|---|
-| No repetir `numero_orden` para la misma lección | Evita que dos recursos aparezcan en la misma posición. |
-| Permitir repetir `numero_orden` en lecciones diferentes | Cada lección tiene su propio orden de recursos. |
+| No repetir numero_orden para la misma lección | Evita que dos recursos aparezcan en la misma posición. |
+| Permitir repetir numero_orden en lecciones diferentes | Cada lección tiene su propio orden de recursos. |
 
 ### Atributos
 
@@ -624,7 +625,7 @@ Se crea como catálogo porque una orden puede tener varios estados de negocio.
 | fallida | Hubo error o rechazo en el proceso de pago. |
 | expirada | La orden quedó sin pago durante demasiado tiempo. |
 
-Si el alumno solo abandona la página sin cancelar, la orden puede permanecer como `pendiente` hasta que el sistema la marque como `expirada`.
+Si el alumno solo abandona la página sin cancelar, la orden puede permanecer como pendiente hasta que el sistema la marque como expirada.
 
 ### Atributos
 
@@ -652,12 +653,12 @@ Representa el pedido generado cuando un alumno inicia la compra de un curso.
 **Justificación:**  
 Se crea porque el sistema necesita registrar cada intento de compra. La orden guarda el usuario, curso, total, moneda y estado de la compra.
 
-Se conservan `id_orden` y `numero_orden` porque no cumplen la misma función:
+Se conservan id_orden y numero_orden porque no cumplen la misma función:
 
-- `id_orden`: identificador interno de la base de datos.
-- `numero_orden`: número visible para el usuario en comprobantes, historial de pedidos y correos.
+- id_orden: identificador interno de la base de datos.
+- numero_orden: número visible para el usuario en comprobantes, historial de pedidos y correos.
 
-El `numero_orden` no se captura a mano. Lo genera el backend cuando se crea la orden.
+El numero_orden no se captura a mano. Lo genera el backend cuando se crea la orden.
 
 Ejemplo de generación:
 
@@ -667,7 +668,7 @@ Ejemplo de generación:
 | año | 2026 |
 | numero_orden | ORD-2026-000015 |
 
-Si después cambia el estado de la orden, el `numero_orden` no cambia. Lo que cambia es el estado.
+Si después cambia el estado de la orden, el numero_orden no cambia. Lo que cambia es el estado.
 
 | Momento | Número de orden | Estado |
 |---|---|---|
@@ -701,7 +702,7 @@ En el comprobante se sigue mostrando el mismo número de orden, pero con estado 
 
 ## 15. Diferencia entre precio_mxn y total
 
-`precio_mxn` y `total` no son lo mismo.
+precio_mxn y total no son lo mismo.
 
 | Campo | Significado |
 |---|---|
@@ -715,7 +716,7 @@ Ejemplo:
 | Emanuel compra el curso | 299.00 | 299.00 |
 | Después el instructor cambia el precio | 399.00 | 299.00 |
 
-Por eso se guardan ambos. `Curso.precio_mxn` puede cambiar, pero `Orden.total` conserva la foto del precio al momento de la compra.
+Por eso se guardan ambos. Curso.precio_mxn puede cambiar, pero Orden.total conserva la foto del precio al momento de la compra.
 
 ---
 
@@ -775,7 +776,7 @@ Guarda los datos de contacto y facturación capturados durante la compra.
 **Justificación:**  
 Se crea para conservar una copia de los datos usados al momento de comprar. Estos datos pueden coincidir con los datos del usuario, pero se guardan aparte porque representan la información capturada en esa orden específica.
 
-Se usa una sola `direccion` porque para este proyecto no se requiere separar dirección en línea 1 y línea 2.
+Se usa una sola direccion porque para este proyecto no se requiere separar dirección en línea 1 y línea 2.
 
 Se normalizan ciudad y estado federativo mediante catálogos.
 
@@ -868,14 +869,14 @@ Representa el pago asociado a una orden.
 **Justificación:**  
 Se crea porque cada orden necesita registrar información del pago realizado o intentado. No guarda datos bancarios sensibles, solo datos necesarios para relacionar la orden con la pasarela externa.
 
-Se usa `monto_pagado` para distinguirlo de `Orden.total`.
+Se usa monto_pagado para distinguirlo de Orden.total.
 
 | Campo | Significado |
 |---|---|
 | Orden.total | Total que EduTech espera cobrar. |
 | Pago.monto_pagado | Monto confirmado por la pasarela. |
 
-`id_pago_externo` no lo genera EduTech. Lo genera la pasarela de pago y se guarda para relacionar el pago interno con la transacción externa.
+id_pago_externo no lo genera EduTech. Lo genera la pasarela de pago y se guarda para relacionar el pago interno con la transacción externa.
 
 ### Atributos
 
@@ -938,7 +939,7 @@ Guarda las notificaciones recibidas desde PayPal o Stripe.
 **Justificación:**  
 Se crea porque la pasarela de pago notifica automáticamente el resultado del pago. Esta entidad permite registrar qué evento llegó, cuándo llegó y si fue procesado.
 
-El atributo `contenido_evento` guarda la información completa enviada por la pasarela. Sirve como evidencia técnica de lo que respondió PayPal o Stripe.
+El atributo contenido_evento guarda la información completa enviada por la pasarela. Sirve como evidencia técnica de lo que respondió PayPal o Stripe.
 
 ### Atributos
 
@@ -977,7 +978,7 @@ Se crea como catálogo porque la inscripción puede tener varios estados de nego
 | completada | El alumno terminó el curso. |
 | cancelada | La inscripción fue cancelada o revocada. |
 
-El estado `cancelada` se usaría cuando el acceso al curso fue revocado después de haberse creado la inscripción, por ejemplo por reembolso, error administrativo o validación del pago.
+El estado cancelada se usaría cuando el acceso al curso fue revocado después de haberse creado la inscripción, por ejemplo por reembolso, error administrativo o validación del pago.
 
 ### Atributos
 
@@ -1039,7 +1040,7 @@ La base guarda qué lecciones se completaron. El backend puede calcular el porce
 |---:|---:|---:|
 | 8 | 20 | 40% |
 
-No se guarda un atributo llamado `porcentaje_avance`, porque podría desactualizarse. Es mejor calcularlo cuando se necesite.
+No se guarda un atributo llamado porcentaje_avance, porque podría desactualizarse. Es mejor calcularlo cuando se necesite.
 
 ### Atributos
 
@@ -1128,7 +1129,7 @@ Representa una pregunta del banco de preguntas.
 **Justificación:**  
 Se crea para almacenar las preguntas que el instructor usará en el examen final.
 
-Se usa `esta_activa` como `BOOLEAN` en lugar de crear `Estado_Pregunta`, porque para este proyecto basta con saber si la pregunta está activa o no.
+Se usa esta_activa como BOOLEAN en lugar de crear Estado_Pregunta, porque para este proyecto basta con saber si la pregunta está activa o no.
 
 ### Atributos
 
@@ -1178,7 +1179,7 @@ Se crea porque cada pregunta de opción múltiple necesita varias opciones y una
 Representa el estado de un intento de examen.
 
 **Justificación:**  
-Se crea como catálogo porque un intento puede tener más de dos estados importantes. No basta con un `BOOLEAN`.
+Se crea como catálogo porque un intento puede tener más de dos estados importantes. No basta con un BOOLEAN.
 
 ### Estados propuestos
 
@@ -1189,7 +1190,7 @@ Se crea como catálogo porque un intento puede tener más de dos estados importa
 | invalidado | El sistema anuló el intento por una regla, error o salida indebida. |
 | abandonado | El alumno salió o perdió conexión antes de terminar. |
 
-Las reglas para cambiar un intento a `invalidado` o `abandonado` normalmente las define el backend.
+Las reglas para cambiar un intento a invalidado o abandonado normalmente las define el backend.
 
 Ejemplos:
 
@@ -1304,14 +1305,14 @@ Representa el certificado emitido al completar un curso.
 **Justificación:**  
 Se crea para registrar el certificado que obtiene el alumno cuando completa todas las lecciones y aprueba el examen final.
 
-Se conservan `id_certificado` y `codigo_certificado` porque no cumplen la misma función:
+Se conservan id_certificado y codigo_certificado porque no cumplen la misma función:
 
 | Campo | Uso |
 |---|---|
 | id_certificado | Identificador interno de la base de datos. |
 | codigo_certificado | Código visible para el alumno, útil para mostrar, descargar o validar el certificado. |
 
-El `codigo_certificado` no se captura a mano. Lo genera el backend cuando se emite el certificado.
+El codigo_certificado no se captura a mano. Lo genera el backend cuando se emite el certificado.
 
 Ejemplo de generación:
 
@@ -1321,7 +1322,7 @@ Ejemplo de generación:
 | año | 2026 |
 | codigo_certificado | EDU-2026-000008 |
 
-El alumno no necesita ver `id_certificado`. En el certificado se muestra algo como `EDU-2026-000008`.
+El alumno no necesita ver id_certificado. En el certificado se muestra algo como EDU-2026-000008.
 
 ### Atributos
 
