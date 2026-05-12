@@ -2,7 +2,7 @@
 
 ## Decision general
 
-Para el proyecto completo se recomienda planear 25 pantallas HTML principales. Para la entrega actual del Sprint 1 se recomienda entregar entre 8 y 10 pantallas principales.
+Para el proyecto completo se recomienda planear 25 pantallas HTML principales. Para la entrega actual del Sprint 1 decidimos entre 8 y 10 pantallas principales.
 
 La razon es que el Sprint 1 debe demostrar el flujo principal sin intentar construir todo el sistema final. Las funciones grandes de instructor, administrador, examen y certificados pueden quedar documentadas para fases posteriores.
 
