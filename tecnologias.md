@@ -158,8 +158,4 @@ Para la version funcional se recomienda:
 | Despliegue frontend | GitHub Pages |
 | Despliegue backend | Render o Railway |
 
----
 
-## Frase para recordar
-
-HTML, CSS y JavaScript sirven para mostrar el prototipo; Node.js aplica las reglas; PostgreSQL guarda la informacion; PayPal o Stripe confirman el pago.
