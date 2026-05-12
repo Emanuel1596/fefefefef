@@ -9,7 +9,7 @@ Para el proyecto completo se recomienda planear 25 pantallas HTML principales. P
 | Alcance | Recomendacion | Motivo |
 |---|---:|---|
 | Proyecto completo | 25 HTML | Cubre zona publica, alumno, instructor, administrador, compra, examen y solicitudes. |
-| Primer sprint | 14 HTML | Permite entregar una version defendible sin crear pantallas innecesarias. |
+| Primer sprint | 0-10 HTML | Permite entregar una version defendible sin crear pantallas innecesarias. |
 
 ## Pantallas totales del proyecto completo
 
@@ -60,8 +60,4 @@ Para el proyecto completo se recomienda planear 25 pantallas HTML principales. P
 | 13 | mi-cuenta.html | Mi cuenta | Permitir ver y editar informacion personal. | RF-07 |
 | 14 | solicitud-instructor.html | Solicitud de instructor | Permitir que un alumno solicite ser instructor. | RF-65, RF-66, RF-67 |
 
-## Pantalla opcional futura
 
-| Archivo HTML | Motivo |
-|---|---|
-| carrito.html | Solo se agrega si el equipo decide manejar un carrito persistente antes de crear la orden. Para el modelo actual no es obligatorio, porque varios cursos se resuelven con `Orden_Detalle`. |
