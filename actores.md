@@ -2,8 +2,6 @@
 
 ## Proyecto: EduTech - Plataforma Web de Cursos
 
-Este documento identifica los actores que interactúan con EduTech.
-
 Un actor puede ser una persona, un rol de usuario o un sistema externo que participa en alguna acción importante dentro de la plataforma.
 
 ---
