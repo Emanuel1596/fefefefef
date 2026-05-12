@@ -46,8 +46,6 @@ Los tipos de dato se plantean pensando en PostgreSQL y en el tamaño esperado de
 | Código de moneda | CHAR(3) |
 | Contenido de webhook | JSONB |
 
-Se usa INTEGER para los identificadores porque es suficiente para el tamaño esperado del proyecto. Para esta etapa no es necesario usar BIGINT.
-
 ---
 
 # Entidades y atributos
