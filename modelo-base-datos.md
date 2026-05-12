@@ -2,12 +2,6 @@
 
 ## Proyecto: EduTech - Plataforma Web de Cursos
 
-Este documento presenta las entidades, atributos y explicaciones principales del modelo de base de datos de EduTech.
-
-El modelo considera que EduTech combina una parte de venta de cursos digitales y una parte e-learning. Por eso separa la compra en Orden y Orden_Detalle, y separa el acceso educativo en Inscripcion, Progreso_Leccion, Intento_Examen y Certificado.
-
----
-
 ## Criterios usados
 
 1. Una entidad representa informacion importante que el sistema necesita guardar.
@@ -17,12 +11,6 @@ El modelo considera que EduTech combina una parte de venta de cursos digitales y
 5. Los porcentajes calculables, como el avance, no se guardan como dato fijo si pueden obtenerse mediante consulta.
 6. Las contraseñas no se guardan en texto plano; se guarda password_hash.
 7. Una compra puede incluir varios cursos, por eso Orden no se conecta directamente con Curso; se usa Orden_Detalle.
-
----
-
-## Nota sobre el uso de nombres sin recuadros grises
-
-En este documento los nombres de tablas y atributos se escriben como texto normal, sin formato de codigo, para evitar los recuadros grises en GitHub.
 
 ---
 
