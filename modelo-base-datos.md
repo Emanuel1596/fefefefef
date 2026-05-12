@@ -857,6 +857,4 @@ Estas reglas se explican fuera del diagrama para que el diagrama no se vea satur
 | Pago debe evitar repetir id_proveedor_pago e id_pago_externo | Evita duplicar pagos externos de PayPal o Stripe. |
 | Webhook_Pago debe evitar repetir id_evento_externo | Evita procesar dos veces el mismo webhook. |
 
-## Frase para recordar
 
-Orden guarda la compra completa; Orden_Detalle guarda cada curso comprado; Pago confirma el dinero; Inscripcion libera el acceso educativo.
