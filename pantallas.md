@@ -34,18 +34,6 @@ La razon es que el Sprint 1 debe demostrar el flujo principal sin intentar const
 
 ---
 
-## Pantallas adicionales que pueden existir como apoyo
-
-Estas pantallas pueden estar en el frontend si ya se avanzaron, pero no son obligatorias para defender el Sprint 1 como entrega principal.
-
-| Archivo HTML | Uso |
-|---|---|
-| mi-cuenta.html | Edicion de informacion personal. |
-| recuperar-password.html | Recuperacion de contraseña. |
-| compra-aprobada.html | Confirmacion de compra aprobada. |
-
----
-
 ## Pantallas totales del proyecto completo
 
 | No. | Archivo HTML | Pantalla |
@@ -76,10 +64,4 @@ Estas pantallas pueden estar en el frontend si ya se avanzaron, pero no son obli
 | 24 | escritorio-admin.html | Escritorio del administrador |
 | 25 | panel-admin.html | Panel administrativo |
 
----
 
-## Nota sobre carrito
-
-No se agrega carrito.html como pantalla obligatoria del Sprint 1 porque el modelo de base de datos ya permite comprar varios cursos mediante Orden_Detalle.
-
-Si despues el profesor pide un carrito persistente, se puede agregar una pantalla carrito.html y las entidades Carrito y Carrito_Detalle. Por ahora no es necesario para que una orden contenga varios cursos.
