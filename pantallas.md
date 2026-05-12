@@ -2,9 +2,7 @@
 
 ## Decision general
 
-Para el proyecto completo se recomienda planear 25 pantallas HTML principales. Para el primer sprint se recomienda disenar 14 pantallas HTML principales.
-
-El cambio de compra con varios cursos no obliga a crear una pantalla nueva si el resumen del pedido se muestra dentro de `compra-curso.html`. Si despues se decide manejar carrito completo, podria agregarse `carrito.html` como pantalla adicional.
+Para el proyecto completo se recomienda planear 25 pantallas HTML principales. Para el primer sprint se recomienda disenar 08-10 pantallas HTML principales.
 
 ## Totales
 
