@@ -2,21 +2,17 @@
 
 ## Proyecto: EduTech - Plataforma Web de Cursos
 
-Este documento define qué puede hacer cada actor dentro del sistema EduTech.
-
 EduTech funciona como una plataforma de venta de cursos digitales. El alumno compra cursos como productos digitales y conserva el acceso al contenido adquirido cuando el pago es aprobado.
 
 ---
 
 ## Actores considerados
 
-| Actor |
-|---|
-| Visitante |
-| Alumno |
-| Instructor |
-| Administrador |
-| Pasarela de pago |
+Visitante 
+Alumno 
+Instructor
+Administrador
+Pasarela de pago
 
 ---
 
