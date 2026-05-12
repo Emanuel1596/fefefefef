@@ -13,7 +13,3 @@ Un actor representa a una persona, rol o sistema externo que interactua con la p
 | Instructor | Usuario registrado | Usuario encargado de crear y administrar sus propios cursos. Puede crear modulos, lecciones, recursos, configurar el examen final, administrar preguntas y consultar el progreso o resultados de sus alumnos. |
 | Administrador | Usuario registrado | Usuario encargado de supervisar el sistema. Puede gestionar usuarios, asignar roles, revisar solicitudes de instructor, revisar cursos, publicar o despublicar cursos, consultar ordenes, pagos, inscripciones y reglas de acceso. |
 | Pasarela de pago | Sistema externo | Sistema externo, como PayPal o Stripe, que procesa el pago de una orden. Despues de procesar la transaccion, notifica a EduTech mediante webhook para confirmar si el pago fue aprobado, rechazado, cancelado o quedo pendiente. |
-
-## Nota
-
-El cambio del modelo de compra no agrega actores nuevos. La compra de varios cursos se resuelve dentro del sistema con `Orden` y `Orden_Detalle`, no con un nuevo actor.
