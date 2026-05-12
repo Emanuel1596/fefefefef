@@ -8,11 +8,11 @@ EduTech funciona como una plataforma de venta de cursos digitales. El alumno com
 
 ## Actores considerados
 
-Visitante 
-Alumno 
-Instructor
-Administrador
-Pasarela de pago
+- Visitante 
+- Alumno 
+- Instructor
+- Administrador
+- Pasarela de pago
 
 ---
 
