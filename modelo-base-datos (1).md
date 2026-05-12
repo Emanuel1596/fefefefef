@@ -1243,17 +1243,4 @@ Estas reglas se explican fuera del diagrama para que el modelo sea más fácil d
 | Pago debe evitar repetir id_proveedor_pago e id_pago_externo | Evita duplicar pagos externos de PayPal o Stripe. |
 | Webhook_Pago debe evitar repetir id_evento_externo | Evita procesar dos veces el mismo webhook. |
 
----
-# Entidades opcionales
 
-## Mensaje_Contacto
-
-Esta entidad solo se usaría si EduTech guardará mensajes enviados desde la pantalla de contacto.
-
-Si el formulario de contacto solo envía un correo y no guarda mensajes en la base de datos, esta entidad puede omitirse.
-
----
-
-# Nota final
-
-Este documento conserva las explicaciones necesarias para defender el modelo de base de datos y mantiene las entidades alineadas con el flujo actualizado de EduTech.
